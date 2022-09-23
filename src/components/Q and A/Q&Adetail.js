@@ -60,23 +60,25 @@ const QandAdetail = () => {
                             >
                                 <Link to={`/question-detail/${qList.id}`} 
                                 style={{ textDecoration: "none" }}>
-                                    <Typography color="black">
+                                    <Typography color="black" style={{textAlign:"start"}}>
                                         <span style={{ fontWeight: "bold" }}>
                                             {" "}
                                             {qList.que}
                                            {" "}
                                         </span>{" "}
-                                        <br />
-                                        
+                                       
+                                        <br></br>
                                         <span style={{ float:"left" }}>Tags: {qList.tags ? (qList.tags.map((q)=>{
                                             return( 
-                                                <small>{`${q} • `}</small>
+                                                <small>{`• ${q}  `}</small>
                                             )
                                         })):""} </span>
 
                                         <span style={{ float:"right" }}>
-                                            12 Sept 2022 by {qList.walletAddress ? (truncate(qList.walletAddress)):""}
+                                            <small>12 Sept 2022 by {qList.walletAddress ? (truncate(qList.walletAddress)):""}
+                                            </small>
                                         </span>
+                                        <br />
                                          
                                     </Typography>
                                 </Link>

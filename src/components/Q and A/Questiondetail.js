@@ -271,19 +271,8 @@ if(a.queId == params.id){
                                 p: 2,
                             }}
                         >
-                             <Typography>
+                             <Typography style={{marginBottom:"2px"}}>
 {a.answer}
-                                {/* Hardhat doesn't support your Node.js version. Please upgrade your
-                                version of Node.js and try again. You are tying to perform an
-                                unsupported operation. Unleuide.
-                                Hardhat doesn't support your Node.js version. Please upgrade your
-                                version of Node.js and try again. You are tying to perform an
-                                unsupported operation. Unleuide.
-                                Hardhat doesn't support your Node.js version. Please upgrade your
-                                version of Node.js and try again. You are tying to perform an
-                                unsupported operation. Unleuide.
-                                Hardhat doesn't support your Node.js version. Please upgrade your
-                                version of Node.js and try again. You are tying to perform an  */}
                                 </Typography>
 
 

@@ -4,6 +4,8 @@ import { useMoralis, useMoralisQuery } from "react-moralis";
 import ReactDOM from "react-dom";
 import axios from 'axios'
 import ModalContribute from "../../Contribute/Contribute";
+import { Link } from "react-router-dom";
+import VideoCallIcon from '@mui/icons-material/VideoCall';
 
 function HorrorDetail() {
     const [readFullStory, setReadFullStory] = useState(false);
@@ -49,8 +51,12 @@ function HorrorDetail() {
                         let wall = response.data.walletAddress;
 
                         b.map((e) => {
+                            // console.log(wall,'wall');
+                            // console.log(e.CurrentUser,'current');
                             let tokAdd = e.tokenContractAddress;
-                            if (wall == e.CurrentUser) {
+                            if (wall.toUpperCase() == e.CurrentUser.toUpperCase()) {
+
+                                // console.log('wallet add is same');
                                 var newData = { ...response.data, element, tokAdd, general_access, nftholder_access, holder_price, Nonholder_price, token }
                                 console.log(newData, 'new data');
                                 setStoryDetails(newData)
@@ -60,7 +66,6 @@ function HorrorDetail() {
                         })
                     }
                     console.log(storyDetails, '------story');
-
                 })
         }
     }
@@ -80,6 +85,7 @@ function HorrorDetail() {
             <h5 className="text-muted">By :  {storyDetails.authorName}</h5><br></br>
             <img className="story-detail-img" src={storyDetails.coverPicture}></img><br></br>
             <small className="text-muted">Last updated {new Date().toLocaleString()}</small>
+            
 
             <h6 className="story-content">
 

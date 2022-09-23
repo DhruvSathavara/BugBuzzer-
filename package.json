@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@livepeer/webrtmp-sdk": "^0.2.3",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@epnsproject/backend-sdk-staging": "^2.0.3",

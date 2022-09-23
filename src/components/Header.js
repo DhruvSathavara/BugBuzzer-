@@ -16,8 +16,11 @@ import UAuth from '@uauth/js'
 import { WorldIDWidget, WidgetProps } from "@worldcoin/id";
 import Dropdown from 'react-bootstrap/Dropdown';
 // import Button from '@mui/material/Button';
-
-
+import PersonIcon from '@mui/icons-material/Person';
+import LoginIcon from '@mui/icons-material/Login';
+import ChatIcon from '@mui/icons-material/Chat';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import VideoCallIcon from '@mui/icons-material/VideoCall';
 
 
 function Header() {
@@ -142,24 +145,39 @@ function Header() {
           </Link>
         </Typography>
 
-        <div style={{ display: 'flex', justifyContent: 'end' }}>
+        <div style={{ display: 'flex', justifyContent: 'end',marginTop:"8px" }}>
           <Link to="upload-form">
-            <Button className="headers-btns">Write Story</Button>
-          </Link>
-          <Link to="/nft-upload">
-            <Button className="headers-btns" >Add NFT Readership</Button>
-          </Link>
-          <Link to="readership-nft">
-            <Button className="headers-btns" >NFT Readership</Button>
-          </Link>
-
-
-          <Link to="askQue">
             <Button className="headers-btns" style={{
-
-            }}>Ask Q</Button>
+              color: "#151D3B",fontFamily:"inherit"
+            }} >Add Tutorial</Button>
           </Link>
+          
+         
 
+
+            <Dropdown>
+            <Dropdown.Toggle style={{background:"white",color:"#151D3B",border:"none",height:"35px"}}>
+              <p style={{fontFamily:"revert"}} >
+              NFT Club
+              </p>
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+            <Dropdown.Item>
+            <Link to="/nft-upload">
+             <label style={{color: "#151D3B"}}>Add NFT Learner club</label>
+          </Link>
+            </Dropdown.Item>
+            <Dropdown.Item>
+            <Link to="readership-nft">
+            <lable style={{color: "#151D3B"}}>NFT Learner club</lable>
+          </Link>
+            </Dropdown.Item>
+
+            </Dropdown.Menu>
+            </Dropdown>
+
+         
 
 
 
@@ -168,10 +186,10 @@ function Header() {
 
           {/*---------------------------- LOG IN------------------------------- */}
 
-          
+
           <Dropdown>
-            <Dropdown.Toggle style={{ background: "#6EBF8B", color: '#151D3B' }} id="dropdown-basic">
-              Login
+            <Dropdown.Toggle style={{ background: "white", color: 'black', border: "none" }} id="dropdown-basic">
+              <LoginIcon ></LoginIcon>
             </Dropdown.Toggle>
             <Dropdown.Menu>
 
@@ -205,18 +223,18 @@ function Header() {
           {/*---------------------------- PROFILE ------------------------------- */}
 
           <Dropdown>
-            <Dropdown.Toggle style={{ background: "black", color: 'green',border:"none",  borderColor:"white" }}  >
-            <Avatar size={40} round="50px" src="https://www.pinpng.com/pngs/m/615-6154495_avatar-png-icon-business-woman-icon-vector-transparent.png" />
+            <Dropdown.Toggle style={{ border: "none", borderColor: "white", color: "black", background: "white" }}  >
+              <PersonIcon></PersonIcon>
             </Dropdown.Toggle>
-            <Dropdown.Menu>
+            <Dropdown.Menu className="min-width-min">
 
 
-              <Dropdown.Item >           <Link to="profile">  <Avatar size={40} round="50px" src="https://www.pinpng.com/pngs/m/615-6154495_avatar-png-icon-business-woman-icon-vector-transparent.png" /></Link></Dropdown.Item>
+              <Dropdown.Item >           <Link to="profile" style={{ marginLeft: "18px" }}><span><small style={{color:"black",float:"left"}}>Profile</small></span>  <PersonIcon style={{float:"right"}}></PersonIcon></Link></Dropdown.Item>
 
 
-              <Dropdown.Item  ><div>
+              <Dropdown.Item style={{width:"95%"}} ><div>
                 <Button aria-describedby={id} onClick={handleClick}>
-                  <BellIcon width='50' height='30' active={true} animate={false} />
+                <span><small style={{color:"black",float:"left",marginLeft:"-9px"}}>Notification</small></span><NotificationsActiveIcon style={{float:"right",marginRight:"-7px",marginLeft:"7px"}}></NotificationsActiveIcon>
                 </Button>
                 <Popover
                   id={id}
@@ -259,12 +277,24 @@ function Header() {
 
 
               <Dropdown.Item >
-                <Link to="chatbox">
+                <Link to="chatbox" style={{ marginLeft: "18px" }}>
 
-                  <Avatar size={40} round="50px" src="https://cdn.iconscout.com/icon/free/png-256/chat-2639493-2187526.png" />
+                <span><small style={{color:"black",float:"left"}}>Chat</small></span> <ChatIcon style={{float:"right"}}></ChatIcon>
 
                 </Link>
               </Dropdown.Item>
+
+              <Dropdown.Item >
+                <Link to="livepeer">
+                  <div style={{ marginRight: "10px", padding: "auto" }}>
+                  <span><small style={{color:"black",float:"left"}}>Request Live</small></span>
+                  <VideoCallIcon style={{marginLeft:"17px"}}></VideoCallIcon>
+                  </div>
+                </Link>
+              </Dropdown.Item>
+
+
+
             </Dropdown.Menu>
 
           </Dropdown>

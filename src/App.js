@@ -39,6 +39,7 @@ import FanfictionDetail from './components/DetailsPage/StoryDetail/FanfictionDet
 import NftReadership from './components/NftReadership/NftReadershipList'
 import NftReadershipDetail from './components/NftReadershipDetail/NftReadershipDetail'
 import ChatBox from './ChatBox';
+import Livepeer from './components/Livepeer/Livepeer';
 
 // Question Answer
 
@@ -100,6 +101,9 @@ function App() {
         <Route path="/askQue" element={<AskQuestion/>} />
         <Route path="/question-detail/:id" element={<Questiondetail />} />
 
+
+        {/*   LIVE PEER  */}
+        <Route path="/livepeer" element={<Livepeer />} />
 
 
       </Routes>
