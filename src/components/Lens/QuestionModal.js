@@ -141,7 +141,7 @@ export default function QuestionModal() {
                 </DialogContent>
                 <DialogActions>
                     <Button variant="contained" onClick={handleClose}>Cancel</Button>
-                    <Button variant="contained" onClick={handleSubmit}>{isLoading ? <CircularProgress color="white" /> : "Post Your Question"}</Button>
+                    <Button variant="contained" onClick={handleSubmit}>{isLoading ?  "Loading..." : "Post Your Question"}</Button>
                 </DialogActions>
             </Dialog>
         </div>

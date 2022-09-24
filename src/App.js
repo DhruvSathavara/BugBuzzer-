@@ -60,7 +60,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/upload-form" element={<UploadForm />} />
         <Route path="/question" element={<CreateQuestion />} />
-        <Route path="/question/:id" element={<QuestionDetails />} />
+        <Route path="/questionDetail/:id" element={<QuestionDetails />} />
 
         <Route path="/profile" element={<Profile />} />
         <Route path="/chatbox" element={<ChatBox />} />

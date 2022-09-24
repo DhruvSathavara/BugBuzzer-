@@ -1,14 +1,17 @@
-import { Avatar, Button } from '@mui/material'
+
+import { Avatar, Button, CircularProgress } from '@mui/material'
 import Divider from '@mui/material/Divider';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { getPublicationByLatest } from '../../LensProtocol/post/explore/explore-publications';
 import QuestionModal from './QuestionModal';
 
-const   category= ["reactjs", "javascript", "typescript"]
+const category = ["reactjs", "javascript", "typescript"]
 
 
 function CreateQuestion() {
+    const navigate = useNavigate();
     const [post, setPost] = useState([]);
 
     useEffect(() => {
@@ -19,6 +22,10 @@ function CreateQuestion() {
         const res = await getPublicationByLatest();
         setPost(res.data.explorePublications.items)
         console.log(res, "res");
+    }
+
+    const handleNavigate = (path) => {
+        navigate(`/questionDetail/${path}`)
     }
 
 
@@ -34,10 +41,21 @@ function CreateQuestion() {
                 </div>
                 <div className='col-12 mt-5'>
                     {
-                     post &&  post.map((e) => {
+                        post == undefined && <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <CircularProgress />
+                        </Box>
+                    }
+                    {
+                        post?.length == 0 && <Box sx={{ display: 'flex', justifyContent: 'start' }}>
+                            <h4>No Questions Available!</h4>
+                        </Box>
+                    }
+                    {
+                        post && post.map((e) => {
+                            console.log(e,"e");
                             return (
-                                <div className='p-3 text-left '>
-                                    <h3 className=''>{e?.metadata?.content}</h3>
+                                <div className='p-3 text-left ' key={e.id}>
+                                    <h3 onClick={() => handleNavigate(e.id)} className='text-primary' style={{ cursor: 'pointer' }}>{e?.metadata?.content}</h3>
                                     <p>{e?.metadata?.description}</p>
                                     <div className='d-flex justify-content-start'>
 

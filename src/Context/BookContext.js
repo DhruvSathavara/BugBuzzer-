@@ -97,6 +97,9 @@ export const BookContextProvider = (props) => {
     const disconnect = async () => {
         if (isAuthenticated) {
             await logout();
+            window.localStorage.removeItem("accessToken");
+            window.localStorage.removeItem("refreshToken");
+            window.localStorage.removeItem("profileId");
         }
     }
 
