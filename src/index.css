@@ -11,3 +11,35 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.home-bg {
+  background-image: url("https://trackjs.com/assets/images/illustrations/protected_script.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 650px;
+  height: auto;
+  width: 100%;
+}
+
+@media screen and (max-width : 1080px){
+  .home-bg { 
+    min-height: 500px;
+     
+  }
+}
+@media screen and (max-width : 768px){
+  .home-bg { 
+    min-height: 500px;
+     
+  }
+}
+@media screen and (max-width : 600px){
+  .home-bg { 
+    min-height: 400px;
+     
+  }
+}
+
+.footer-position{
+  min-height: calc(100vh - 34px);
+}

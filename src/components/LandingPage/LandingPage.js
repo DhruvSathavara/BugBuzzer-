@@ -7,14 +7,14 @@ import Questiondetail from "../Q and A/Questiondetail";
 function LandingPage() {
 
     return (
-        <div className="container-fluid landigpage-contain">
-            <div className="landing-img" >
-                <img className="landing-page-img"style={{marginTop:"71px",width:"100vw"}} src="https://trackjs.com/assets/images/illustrations/protected_script.svg"></img>
-                
-            </div>
+        <div className="home-bg">
+            {/* <div className="row">
+                <div className="col">
+                    <img  src="https://trackjs.com/assets/images/illustrations/protected_script.svg"></img>
+                </div>
+            </div> */}
         </div>
     )
 }
 
 export default LandingPage;
-    

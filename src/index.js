@@ -8,7 +8,9 @@ import { MoralisProvider } from 'react-moralis';
 import { BrowserRouter } from 'react-router-dom';
 import { BookContextProvider } from './Context/BookContext';
 import 'react-toastify/dist/ReactToastify.css';
-import { ChatBoxContextProvider } from './Context/ChatBoxContext';
+import { LensAuthContextProvider } from './Context/LensContext';
+import { ChatBoxContextProvider } from './Context/ChatBoxContext'; 
+import { ToastContainer } from 'react-toastify';
 
 
 
@@ -19,7 +21,10 @@ import { ChatBoxContextProvider } from './Context/ChatBoxContext';
 ReactDOM.render(
 
   <MoralisProvider appId={process.env.REACT_APP_MORALIS_KEY} serverUrl={process.env.REACT_APP_MORALIS_SERVER}>
+   <LensAuthContextProvider>
+    <ToastContainer/>
     <BookContextProvider>
+      
       <BrowserRouter>
       <ChatBoxContextProvider>
         <React.StrictMode>
@@ -28,8 +33,9 @@ ReactDOM.render(
         </React.StrictMode>
         </ChatBoxContextProvider>
 
-      </BrowserRouter>
+      </BrowserRouter> 
     </BookContextProvider>
+    </LensAuthContextProvider>
   </MoralisProvider>,
   document.getElementById('root')
 

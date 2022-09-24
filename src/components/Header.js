@@ -27,17 +27,12 @@ function Header() {
   const [value, setValue] = useState();
 
   // const [notificationItems, setNotificationItems] = useState([]);
-  const bookContext = React.useContext(BookContext);
-
+  const bookContext = React.useContext(BookContext); 
   const { login } = bookContext;
 
 
   const { Moralis, isAuthenticated, user } = useMoralis();
-  // console.log(user, 'user');
-
-
-
-  // 
+  // console.log(user, 'user'); 
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -151,8 +146,7 @@ function Header() {
           </Link>
           <Link to="readership-nft">
             <Button className="headers-btns" >NFT Readership</Button>
-          </Link>
-
+          </Link> 
 
           <Link to="askQue">
             <Button className="headers-btns" style={{

@@ -45,24 +45,29 @@ import ChatBox from './ChatBox';
 import Questiondetail from './components/Q and A/Questiondetail';
 import AskQuestion from './components/Q and A/AskQuestion';
 import QandAdetail from './components/Q and A/Q&Adetail';
+import Navbar from './components/Navbar';
+import CreateQuestion from './components/Lens/createQuestion';
+import QuestionDetails from './components/Lens/QuestionDetails';
 
 
 function App() {
   return (
-    <div className="App">
-      <Header />
+    < div className='App footer-position'>
+      {/* <Header /> */}
+      <Navbar/>
       {/* <ChatBox /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/upload-form" element={<UploadForm />} />
+        <Route path="/question" element={<CreateQuestion />} />
+        <Route path="/question/:id" element={<QuestionDetails />} />
 
         <Route path="/profile" element={<Profile />} />
         <Route path="/chatbox" element={<ChatBox />} />
 
 
-        <Route path="/nft-upload" element={<UploadFormNft />} />
-
-        {/* Storypad List */}
+        <Route path="/nft-upload" element={<UploadFormNft />} /> 
+      
         <Route path="/fantasy" element={<Fantasy />} />
         <Route path="/historical" element={<Historical />} />
         <Route path="/horror" element={<Horror />} />
@@ -74,11 +79,7 @@ function App() {
         <Route path="/sequels" element={<Sequels />} />
         <Route path="/wildcard" element={<WildCard />} />
         <Route path="/youngadult" element={<YoungAdult />} />
-        <Route path="/fanfiction" element={<Fanfiction />} />
-
-
-        {/* Storypad Detail */}
-
+        <Route path="/fanfiction" element={<Fanfiction />} /> 
 
         <Route path="/fantasy-detail/:id" element={<HorrorDetail />} />
         <Route path="/historical-detail/:id" element={<HistoricalDetail />} />
@@ -96,7 +97,7 @@ function App() {
         <Route path="/readership-nft" element={<NftReadership />} />
         <Route path="/readership-nft-detail/:address" element={<NftReadershipDetail />} />
 
-        {/* Question detail */}
+        
         <Route path="/askQue" element={<AskQuestion/>} />
         <Route path="/question-detail/:id" element={<Questiondetail />} />
 
