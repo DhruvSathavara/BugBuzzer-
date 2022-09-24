@@ -21,17 +21,17 @@ function SlickSlider() {
         {/* <p className='under-line'></p> */}
       </div>
       <Slider {...settings}>
-        <div className='open-model'><img src='https://img.wattpad.com/cover/289526735-100-k174253.jpg' alt="Credit to Joshua Earle on Unsplash" /><p className='book-details'>MISTRESS OF FLAME</p></div>
+        <div className='open-model'><img src='https://baselgovernance.org/sites/default/files/2020-08/200819%20Claudia%20paper.jpg' alt="Credit to Joshua Earle on Unsplash" /></div>
 
-        <div className='open-model'><img src='https://img.wattpad.com/cover/208777238-352-k836343.jpg' alt="Credit to Alisa Anton on Unsplash" /><p className='book-details'>SAVING MY MATE</p></div>
+        <div className='open-model'><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4wz6JiMibMDlSreB2GV_cSm_EBGWKKVUmqg&usqp=CAU' alt="Credit to Alisa Anton on Unsplash" /></div>
 
-        <div className='open-model'><img src='https://img.wattpad.com/cover/218397324-352-k239985.jpg' alt="Credit to Igor Ovsyannykov on Unsplash" /><p className='book-details'>MY FIGHTER MAN</p></div>
+        <div className='open-model'><img src='https://img.pikbest.com/01/55/02/30apIkbEsT6jG.jpg-0.jpg!bw340' alt="Credit to Igor Ovsyannykov on Unsplash" /></div>
 
-        <div className='open-model'><img src='https://img.wattpad.com/cover/141384284-352-k94402.jpg' alt="Credit to Pierre Châtel-Innocenti on Unsplash" /><p className='book-details'>MEANT TO BE</p></div>
+        <div className='open-model'><img src='https://img.wattpad.com/cover/141384284-352-k94402.jpg' alt="Credit to Pierre Châtel-Innocenti on Unsplash" /></div>
 
-        <div className='open-model'><img src='https://img.wattpad.com/cover/234299031-352-k563676.jpg' alt="Credit to Richard Nolan on Unsplash" /><p className='book-details'>SEED OF ICHOR</p></div>
+        <div className='open-model'><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPlQ_Lqmedb9svgjcXHDN_vPXX4PL6AHBPcw&usqp=CAU' alt="Credit to Richard Nolan on Unsplash" /></div>
 
-        <div className='open-model'><img src='https://img.wattpad.com/cover/310591694-352-k510045.jpg' alt="Credit to Cristina Gottardi on Unsplash" /><p className='book-details'>ACROSS THE POUND</p></div>
+        <div className='open-model'><img src='https://ziclife.com/wp-content/uploads/2020/07/it-image-9.jpg' alt="Credit to Cristina Gottardi on Unsplash" /></div>
       </Slider>
     </div>
   );

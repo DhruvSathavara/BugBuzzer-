@@ -136,6 +136,10 @@ div .cardsfeture a {
 .title-box {
   margin-top: 53px;
 }
+.open-model img{
+  height: 180px !important;
+  width: 180px !important;
+}
 
 .container-fluid .slider-div img {
   height: 124px;

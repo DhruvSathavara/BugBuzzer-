@@ -22,8 +22,10 @@ const QandAdetail = () => {
     async function ListQuestions(Qlist) {
         var array = [];
         if (Qlist) {
+            console.log('q list is here');
             for (let index = 0; index < Qlist.length; index++) {
                 const element = Qlist[index];
+                console.log(element,'q ele');
                 if (element.CID) {
 
                     await axios.get(`https://${element.CID}.ipfs.dweb.link/story.json`).then(async (response) => {
