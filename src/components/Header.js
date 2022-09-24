@@ -21,6 +21,10 @@ import LoginIcon from '@mui/icons-material/Login';
 import ChatIcon from '@mui/icons-material/Chat';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import VideoCallIcon from '@mui/icons-material/VideoCall';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 
 function Header() {
@@ -145,39 +149,15 @@ function Header() {
           </Link>
         </Typography>
 
-        <div style={{ display: 'flex', justifyContent: 'end',marginTop:"8px" }}>
+        <div style={{ display: 'flex', justifyContent: 'end', marginTop: "8px" }}>
           <Link to="upload-form">
-            <Button className="headers-btns" style={{
-              color: "#151D3B",fontFamily:"inherit"
-            }} >Add Tutorial</Button>
+            <label className="addtute" style={{
+              color: "#151D3B", fontFamily: "inherit", marginTop: "16px", marginRight: "41px"
+            }} >Add Tutorial</label>
           </Link>
-          
-         
 
 
-            <Dropdown>
-            <Dropdown.Toggle style={{background:"white",color:"#151D3B",border:"none",height:"35px"}}>
-              <p style={{fontFamily:"revert"}} >
-              NFT Club
-              </p>
-            </Dropdown.Toggle>
 
-            <Dropdown.Menu>
-            <Dropdown.Item>
-            <Link to="/nft-upload">
-             <label style={{color: "#151D3B"}}>Add NFT Learner club</label>
-          </Link>
-            </Dropdown.Item>
-            <Dropdown.Item>
-            <Link to="readership-nft">
-            <lable style={{color: "#151D3B"}}>NFT Learner club</lable>
-          </Link>
-            </Dropdown.Item>
-
-            </Dropdown.Menu>
-            </Dropdown>
-
-         
 
 
 
@@ -186,59 +166,102 @@ function Header() {
 
           {/*---------------------------- LOG IN------------------------------- */}
 
+          <Navbar>
+            <Navbar.Toggle aria-controls="" />
+            <Navbar.Collapse  id="">
+              <Nav>
 
-          <Dropdown>
-            <Dropdown.Toggle style={{ background: "white", color: 'black', border: "none" }} id="dropdown-basic">
-              <LoginIcon ></LoginIcon>
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
+                <NavDropdown
+                  title="Login"
+                  style={{marginRight:"3vw"}}
+                >
+              <div style={{left:"3rem"}} >
 
-              <Dropdown.Item onClick={() => login()}>{isAuthenticated ? "Connected" : "Web3 Auth"}
-              </Dropdown.Item>
+                    <NavDropdown.Item onClick={() => login()}>
+                      {isAuthenticated ? "Connected" : "Web3 Auth"}
+                    </NavDropdown.Item>
+                    <NavDropdown.Item onClick={inlog}>
+                      {
+                        localStorage.getItem("domain") !== null ? (
+                          <small className="log-title">{localStorage.getItem("domain")}</small>
+                        ) : "Unstoppable"}
+                    </NavDropdown.Item>
+
+                    <NavDropdown.Item  >
+                      <WorldIDWidget
+                        actionId="wid_staging_76474f51ceeaf9c0730fae2c659f637b" // obtain this  
+                        signal="user-id-1"
+                        enableTelemetry='false'
+                        appName="candyApp"
+                        signalDescription="Receive initial airdrop April 2022"
+                        theme="light"
+                        debug='true' // DO NOT SET TO `true` IN PRODUCTION
+                        onSuccess={(result) => console.log(result)}
+                        onError={({ code, detail }) => console.log({ code, detail })}
+                        onInitSuccess={() => console.log("Init successful")}
+                        onInitError={(error) => console.log("Error while initialization World ID", error)} />
+                    </NavDropdown.Item>
+
+                    </div>
+                </NavDropdown>
+                
+
+              </Nav>
+            </Navbar.Collapse>
+
+          </Navbar>
 
 
-              <Dropdown.Item onClick={inlog} >{
-                localStorage.getItem("domain") !== null ? (
-                  <small className="log-title">{localStorage.getItem("domain")}</small>
-                ) : "Unstoppable"}
-              </Dropdown.Item>
 
 
-              <Dropdown.Item ><WorldIDWidget
-                actionId="wid_staging_76474f51ceeaf9c0730fae2c659f637b" // obtain this  
-                signal="user-id-1"
-                enableTelemetry='false'
-                appName="candyApp"
-                signalDescription="Receive initial airdrop April 2022"
-                theme="light"
-                debug='true' // DO NOT SET TO `true` IN PRODUCTION
-                onSuccess={(result) => console.log(result)}
-                onError={({ code, detail }) => console.log({ code, detail })}
-                onInitSuccess={() => console.log("Init successful")}
-                onInitError={(error) => console.log("Error while initialization World ID", error)} /></Dropdown.Item>
+{/* ----------- NFT CLUB------------ */}
 
-            </Dropdown.Menu>
-          </Dropdown>
+
+          <Navbar>
+            <Navbar.Toggle aria-controls="" />
+            <Navbar.Collapse id="">
+              <Nav>
+                <NavDropdown
+                style={{marginRight:"25px"}}
+                  // id="dark"
+                  title="NFT Club"
+                // menuVariant="dark"
+                // color="dark"
+                >
+                  <NavDropdown.Item href="/nft-upload"> Add NFT Learner club</NavDropdown.Item>
+                  <NavDropdown.Item href="readership-nft">
+                    NFT Learner club
+                  </NavDropdown.Item>
+
+
+                </NavDropdown>
+              </Nav>
+            </Navbar.Collapse>
+
+          </Navbar>
+
 
           {/*---------------------------- PROFILE ------------------------------- */}
 
           <Dropdown>
-            <Dropdown.Toggle style={{ border: "none", borderColor: "white", color: "black", background: "white" }}  >
+            <Dropdown.Toggle style={{ border: "none", borderColor: "white", color: "black", background: "white",marginTop:"9px",marginRight:"14px" }}  >
               <PersonIcon></PersonIcon>
             </Dropdown.Toggle>
-            <Dropdown.Menu className="min-width-min">
+            
+            <Dropdown.Menu style={{marginRight:"22px"}}className="min-width-min">
 
 
-              <Dropdown.Item >           <Link to="profile" style={{ marginLeft: "18px" }}><span><small style={{color:"black",float:"left"}}>Profile</small></span>  <PersonIcon style={{float:"right"}}></PersonIcon></Link></Dropdown.Item>
+              <Dropdown.Item >           <Link to="profile" style={{ marginLeft: "18px" }}><span><small style={{ color: "black", float: "left" }}>Profile</small></span>  <PersonIcon style={{ float: "right" }}></PersonIcon></Link></Dropdown.Item>
 
 
-              <Dropdown.Item style={{width:"95%"}} ><div>
+              <Dropdown.Item style={{ width: "95%" }} ><div >
                 <Button aria-describedby={id} onClick={handleClick}>
-                <span><small style={{color:"black",float:"left",marginLeft:"-9px"}}>Notification</small></span><NotificationsActiveIcon style={{float:"right",marginRight:"-7px",marginLeft:"7px"}}></NotificationsActiveIcon>
+                  <span><small style={{ color: "black", float: "left", marginLeft: "-9px" }}>Notification</small></span><NotificationsActiveIcon style={{ float: "right", marginRight: "-7px", marginLeft: "7px" }}></NotificationsActiveIcon>
                 </Button>
                 <Popover
                   id={id}
                   open={open}
+                  className="notification-box"
                   anchorEl={anchorEl}
                   onClose={handleClose}
                   anchorOrigin={{
@@ -248,7 +271,7 @@ function Header() {
                 >
                   <Typography sx={{ p: 2 }}>
 
-                    <div>
+                    <div >
                       {notificationItems.map((notific) => {
                         return (
                           <div>
@@ -279,7 +302,7 @@ function Header() {
               <Dropdown.Item >
                 <Link to="chatbox" style={{ marginLeft: "18px" }}>
 
-                <span><small style={{color:"black",float:"left"}}>Chat</small></span> <ChatIcon style={{float:"right"}}></ChatIcon>
+                  <span><small style={{ color: "black", float: "left" }}>Chat</small></span> <ChatIcon style={{ float: "right" }}></ChatIcon>
 
                 </Link>
               </Dropdown.Item>
@@ -287,8 +310,8 @@ function Header() {
               <Dropdown.Item >
                 <Link to="livepeer">
                   <div style={{ marginRight: "10px", padding: "auto" }}>
-                  <span><small style={{color:"black",float:"left"}}>Request Live</small></span>
-                  <VideoCallIcon style={{marginLeft:"17px"}}></VideoCallIcon>
+                    <span><small style={{ color: "black", float: "left" }}>Request Live</small></span>
+                    <VideoCallIcon style={{ marginLeft: "17px" }}></VideoCallIcon>
                   </div>
                 </Link>
               </Dropdown.Item>

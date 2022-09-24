@@ -10,6 +10,9 @@ import { ethers } from "ethers";
 import web3 from "web3";
 import axios from "axios";
 import EpnsSDK from "@epnsproject/backend-sdk-staging";
+
+
+
 function NftReadershipDetail({ symbol }) {
   const { address } = useParams()
   console.log(address, 'address in NFT detail');
@@ -119,6 +122,7 @@ function NftReadershipDetail({ symbol }) {
         solditems.set("tokenAddress", tokenAddress);
         solditems.set("tokenId", tokenID);
         solditems.set("authorNAME", authorNAME);
+        solditems.set("Buyer", userAdd);
         solditems.save();
         const PK = process.env.REACT_APP_EPNS_PRIVATE_KEY;
         const Pkey = `0x${PK}`;
@@ -147,6 +151,8 @@ function NftReadershipDetail({ symbol }) {
       {resultData.map((obj) => {
         return (
           <>
+
+
             <div className="profile-layout">
               <header className="background background-lg" style={{ backgroundColor: "#4b2caa" }}>
                 <div className="avatar avatar-profile center-block">
@@ -158,6 +164,8 @@ function NftReadershipDetail({ symbol }) {
                 </div>
               </header>
             </div>
+
+
             <div style={{ marginTop: "62px" }} className="container">
               <div className="row">
                 {imageURls.map((img) => {

@@ -46,12 +46,15 @@ import Livepeer from './components/Livepeer/Livepeer';
 import Questiondetail from './components/Q and A/Questiondetail';
 import AskQuestion from './components/Q and A/AskQuestion';
 import QandAdetail from './components/Q and A/Q&Adetail';
+import Navbar from './components/Navbar';
 
 
 function App() {
   return (
     <div className="App">
       <Header />
+      {/* <Navbar/> */}
+
       {/* <ChatBox /> */}
       <Routes>
         <Route path="/" element={<Home />} />

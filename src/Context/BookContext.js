@@ -180,6 +180,15 @@ export const BookContextProvider = (props) => {
         return imageURI;
     }
 
+    // function disconnectWallet() {
+    //     // web3Modal.clearCachedProvider();
+    //     window.localStorage.removeItem("accessToken");
+    //     window.localStorage.removeItem("refreshToken");
+    //     window.localStorage.removeItem("profileId");
+    //     setUpdate(!update)
+    //     window.location.reload();
+    
+    //   }
 
 
     return (
@@ -194,6 +203,7 @@ export const BookContextProvider = (props) => {
                 storeFile,
                 Image,
                 fetch,
+                // disconnectWallet
 
 
 

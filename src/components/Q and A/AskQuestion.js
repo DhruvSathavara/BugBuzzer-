@@ -47,13 +47,13 @@ export default function AskQuestion() {
   let QuestionItems = {
     que: que,
     tags: tags,
-    walletAddress:localStorage.getItem("currentUserAddress")
+    walletAddress: localStorage.getItem("currentUserAddress")
   }
-  console.log(QuestionItems,'Q items');
+  console.log(QuestionItems, 'Q items');
   const inputKeyDown = (e) => {
     const val = e.target.value;
-    console.log(val,'val in keydown');
-    console.log(e.key,'keyyy');
+    console.log(val, 'val in keydown');
+    console.log(e.key, 'keyyy');
     if (e.key === "Shift" && val) {
       if (tags.find((tag) => tag.toLowerCase() === val.toLowerCase())) {
         return;
@@ -65,28 +65,28 @@ export default function AskQuestion() {
     }
   };
 
-  
+
   function addData(QuestionItems) {
     const blob = new Blob(
-        [
-            JSON.stringify(QuestionItems),
-        ],
-        { type: "application/json" }
+      [
+        JSON.stringify(QuestionItems),
+      ],
+      { type: "application/json" }
     );
     const files = [
-        new File([blob], "story.json"),
+      new File([blob], "story.json"),
     ];
     console.log('files==>', files);
     return files;
 
-}
+  }
 
 
   async function storeFiles(QuestionItems) {
     QuestionClass.set('Current_user', user);
-   QuestionClass.set('question', QuestionItems.que);
-   QuestionClass.set('tags', QuestionItems.tags);
-   QuestionClass.set('wallet', QuestionItems.walletAddress);
+    QuestionClass.set('question', QuestionItems.que);
+    QuestionClass.set('tags', QuestionItems.tags);
+    QuestionClass.set('wallet', QuestionItems.walletAddress);
 
 
     let files = addData(QuestionItems);
@@ -95,21 +95,24 @@ export default function AskQuestion() {
     QuestionClass.save();
     console.log("files with cid ==>", ` https://dweb.link/ipfs/${cid}/story.json`);
     return cid;
-}
+  }
 
 
 
   async function onFormSubmit(e) {
     e.preventDefault()
+    setLoading(true)
     storeFiles(QuestionItems)
-    // setLoading(true)
+    setQue(null);
+    setTags([]);
+    setLoading(false)
   }
 
   return (
     <>
       <Container>
         <Typography
-        className="form-style-2-heading"
+          className="form-style-2-heading"
           variant="h5"
           sx={{
             pt: 16,
@@ -139,14 +142,16 @@ export default function AskQuestion() {
               name="description"
               aria-label="minimum height"
               minRows={5}
+              // mt={10}
               placeholder="Ask your Question here !"
               style={{
                 width: "auto",
                 borderColor: "rgb(196 196 196)",
                 borderRadius: "5px",
                 marginTop: "60px",
+                padding: "12px"
               }}
-              // {...formik.getFieldProps("question")}
+            // {...formik.getFieldProps("question")}
             ></TextareaAutosize>
 
 
@@ -180,7 +185,7 @@ export default function AskQuestion() {
                       tagInput = c;
                     }}
                   />
-                  ;{/* })} */}
+                  {/* })} */}
                 </li>
               </ul>
             </div>
@@ -196,7 +201,7 @@ export default function AskQuestion() {
                 size="midium"
                 style={{
                   backgroundColor: "#6EBF8B",
-                  color:"#151D3B",
+                  color: "#151D3B",
                   textTransform: "capitalize",
                   border: "2px solid #6EBF8B",
                   marginRight: "18px",
@@ -204,7 +209,7 @@ export default function AskQuestion() {
                 }}
                 sx={{ borderRadius: 2, mt: 5 }}
               >
-                Submit
+                {loading ? "Loading...." : "Submit"}
               </Button>
             </Grid>
           </DialogActions>
@@ -213,4 +218,3 @@ export default function AskQuestion() {
     </>
   );
 }
- 
