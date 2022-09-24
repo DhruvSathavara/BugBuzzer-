@@ -25,6 +25,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import NavbarB from "./Navbar";
 
 
 function Header() {
@@ -152,7 +153,7 @@ function Header() {
         <div style={{ display: 'flex', justifyContent: 'end', marginTop: "8px" }}>
           <Link to="upload-form">
             <label className="addtute" style={{
-              color: "#151D3B", fontFamily: "inherit", marginTop: "16px", marginRight: "41px"
+              color: "#151D3B", fontFamily: "inherit", marginTop: "20px", marginRight: "41px"
             }} >Add Tutorial</label>
           </Link>
 
@@ -164,57 +165,12 @@ function Header() {
 
 
 
-          {/*---------------------------- LOG IN------------------------------- */}
-
-          <Navbar>
-            <Navbar.Toggle aria-controls="" />
-            <Navbar.Collapse  id="">
-              <Nav>
-
-                <NavDropdown
-                  title="Login"
-                  style={{marginRight:"3vw"}}
-                >
-              <div style={{left:"3rem"}} >
-
-                    <NavDropdown.Item onClick={() => login()}>
-                      {isAuthenticated ? "Connected" : "Web3 Auth"}
-                    </NavDropdown.Item>
-                    <NavDropdown.Item onClick={inlog}>
-                      {
-                        localStorage.getItem("domain") !== null ? (
-                          <small className="log-title">{localStorage.getItem("domain")}</small>
-                        ) : "Unstoppable"}
-                    </NavDropdown.Item>
-
-                    <NavDropdown.Item  >
-                      <WorldIDWidget
-                        actionId="wid_staging_76474f51ceeaf9c0730fae2c659f637b" // obtain this  
-                        signal="user-id-1"
-                        enableTelemetry='false'
-                        appName="candyApp"
-                        signalDescription="Receive initial airdrop April 2022"
-                        theme="light"
-                        debug='true' // DO NOT SET TO `true` IN PRODUCTION
-                        onSuccess={(result) => console.log(result)}
-                        onError={({ code, detail }) => console.log({ code, detail })}
-                        onInitSuccess={() => console.log("Init successful")}
-                        onInitError={(error) => console.log("Error while initialization World ID", error)} />
-                    </NavDropdown.Item>
-
-                    </div>
-                </NavDropdown>
-                
-
-              </Nav>
-            </Navbar.Collapse>
-
-          </Navbar>
 
 
 
 
-{/* ----------- NFT CLUB------------ */}
+
+          {/* ----------- NFT CLUB------------ */}
 
 
           <Navbar>
@@ -222,7 +178,7 @@ function Header() {
             <Navbar.Collapse id="">
               <Nav>
                 <NavDropdown
-                style={{marginRight:"25px"}}
+                  style={{ marginRight: "25px" }}
                   // id="dark"
                   title="NFT Club"
                 // menuVariant="dark"
@@ -240,15 +196,19 @@ function Header() {
 
           </Navbar>
 
+          {/*---------------------------- LOG IN------------------------------- */}
+
+          <NavbarB />
+
 
           {/*---------------------------- PROFILE ------------------------------- */}
 
           <Dropdown>
-            <Dropdown.Toggle style={{ border: "none", borderColor: "white", color: "black", background: "white",marginTop:"9px",marginRight:"14px" }}  >
-              <PersonIcon></PersonIcon>
+            <Dropdown.Toggle style={{ border: "none", borderColor: "white", color: "black", background: "white", marginTop: "9px", marginRight: "14px" }}  >
+              <PersonIcon style={{ fontSize: '35px' }}></PersonIcon>
             </Dropdown.Toggle>
-            
-            <Dropdown.Menu style={{marginRight:"22px"}}className="min-width-min">
+
+            <Dropdown.Menu style={{ marginRight: "22px" }} className="min-width-min">
 
 
               <Dropdown.Item >           <Link to="profile" style={{ marginLeft: "18px" }}><span><small style={{ color: "black", float: "left" }}>Profile</small></span>  <PersonIcon style={{ float: "right" }}></PersonIcon></Link></Dropdown.Item>

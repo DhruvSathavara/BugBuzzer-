@@ -236,7 +236,7 @@ function UploadFormNft() {
       className="col footer-top"
     >
       <div className="form-style-2 offset-4 row-8">
-        <div className="form-style-2-heading">Add NFT Readership from here</div>
+        <div className="form-style-2-heading-title">Create NFT Learners club</div>
         <form action="" method="" onSubmit={onFormSubmit}>
           <label for="field1">
             <span>

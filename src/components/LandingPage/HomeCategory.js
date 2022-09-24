@@ -16,9 +16,9 @@ function HomeCategory() {
                         <div class="row rowcategory">
                             <div class="col-md-4" style={{ height: "260px" }}>
 
-                                <div class="profile-card-2"><img src="../SMART CONTRACT.png" />
+                                <div class="profile-card-2"><img src="UXUI.png" />
                                     <Link to="fanfiction">
-                                        <div class="profile-name">SMART CONTRACT</div></Link>
+                                        <div class="profile-name">UI/UX</div></Link>
                                 </div>
                             </div>
 
@@ -35,9 +35,9 @@ function HomeCategory() {
                             </div>
                             <div class="col-md-4" style={{ height: "260px" }}>
 
-                                <div class="profile-card-2"><img src="UXUI.png" class="img img-responsive" />
-                                    <Link to="horror">
-                                        <div class="profile-name">UI/UX</div></Link>
+                                <div class="profile-card-2"><img src="../SMART CONTRACT.png" class="img img-responsive" />
+                                    <Link to="smartcontract">
+                                        <div class="profile-name">SMART CONTRACT</div></Link>
                                 </div>
                             </div>
                             <div class="col-md-4" style={{ height: "260px" }}>

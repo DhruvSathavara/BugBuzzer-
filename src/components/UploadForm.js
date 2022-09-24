@@ -14,6 +14,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import EpnsSDK from "@epnsproject/backend-sdk-staging"
 import * as EpnsAPI from "@epnsproject/sdk-restapi"
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+
 import { ethers } from 'ethers'
 function UploadForm() {
     const notify = () => toast("Story is Published!");
@@ -170,23 +172,44 @@ function UploadForm() {
     return (
         <div style={{ backgroundColor: "aliceblue", marginTop: "77px" }} className="col">
             <div className="form-style-2 offset-4 row-8">
-                <div className="form-style-2-heading">Share Your Valuable Knowledge</div>
+                <div className="form-style-2-heading-title">Share Your Valuable Knowledge</div>
                 <form action="" method="" onSubmit={onFormSubmit}>
                     <label for="field1"><span>Author Name  <span className="required">*</span></span><input value={AuthorName} onChange={AuthornameEvent} placeholder="File name" type="text" class="input-field" name="field1" /></label>
                     <label for="field1"><span> Title <span className="required">*</span></span><input value={name} onChange={nameEvent} placeholder="File name" type="text" class="input-field" name="field1" /></label>
                     <label for="field4"><span>Category <span className="required">*</span></span><select value={category} name="field4" onChange={(e) => setCategory(e.target.value)} className="select-field">
                         <option>Choose Category </option>
-                        <option defaultChecked defaultValue="Fanfiction" value="Fanfiction">Smart Contract</option>
-                        <option value="Fantasy">Security Vulnerabilities</option>
-                        <option value="Horror">UI/UX</option>
-                        <option value="Mystery">Crypto Scams</option>
-                        <option value="Romance">Hardware And IOT</option>
-                        <option value="Historical">Function Issues</option>
-                        
+                        <option defaultChecked defaultValue="Fanfiction" value="smartcontract">Smart Contract</option>
+                        <option value="vulnerabilities">Security Vulnerabilities</option>
+                        <option value="uiux">UI/UX</option>
+                        <option value="cryptoscam">Crypto Scams</option>
+                        <option value="iot">Hardware And IOT</option>
+                        <option value="functionissue">Function Issues</option>
+
                     </select></label>
-                    <div style={{ marginBottom: "50px" }}>
-                        <label for="field6"><span>Add Image <span className="required">*</span></span><input className="file-input" value={undefined} onChange={coverEvent} type="file"></input></label>
+                    <label for="field6"><span>Add Image <span className="required">*</span></span></label>
+                    <div className="mt-2 mb-2" style={{ border: '1px solid grey', borderRadius: '6px', width: "30.5vw", marginLeft: "14.5vw" }}>
+                        <input
+
+                            type="file"
+                            name="file"
+                            id="file"
+                            value={undefined}
+                            onChange={coverEvent}
+                            className="input-file d-none" />
+                        <label
+                            htmlFor="file"
+                            style={{ width: '100%', cursor: 'pointer' }}
+                            className="rounded-3 text-center    js-labelFile p-2 my-2 w-20  "
+                        >
+                            <CloudUploadIcon />
+                            <p className="js-fileName">
+                                Upload Profile(PNG, JPG, GIF)
+                            </p>
+                        </label>
                     </div>
+                    {/* <div style={{ marginBottom: "50px" }}>
+                        <label for="field6"><span>Add Image <span className="required">*</span></span><input className="file-input" value={undefined} onChange={coverEvent} type="file"></input></label>
+                    </div> */}
                     <label for="field5" style={{ display: "inline-flex" }}><span style={{}}>Description <span
                         className="required">*</span></span>
                         <Editor
@@ -262,7 +285,7 @@ function UploadForm() {
                     }
                     <label><input className="terms-checkbox" value={checkbox} onChange={checkboxEvent} type="checkbox"></input>I agree to terms and conditions.</label>
                     <button className="btn" type="submit" style={{
-                      background: "#6EBF8B", color: '#151D3B',
+                        background: "#6EBF8B", color: '#151D3B',
                         fontWeight: '30px', borderRadius: '7%', marginLeft: "137px", padding: "auto"
                     }} onClick={notify} disabled={loading}>
                         {loading ? "Loading...." : "Publish"}

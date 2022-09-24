@@ -193,6 +193,16 @@ input.input-field1 {
   width: 50%;
   /* padding-bottom: 17px; */
 }
+.form-style-2 .form-style-2-heading-title {
+  font-weight: bold;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  /* border-bottom: 3px solid #6EBF8B !important; */
+  margin-bottom: 27px;
+  font-size: 25px;
+  /* margin-right: 22px; */
+  /* width: 50%; */
+  padding-bottom: 17px;
+}
 
 .form-style-2 label {
   display: block;
@@ -201,7 +211,7 @@ input.input-field1 {
 
 .form-style-2 label>span {
   width: 168px;
-  font-weight: bold;
+  /* font-weight: bold; */
   float: left;
   padding-top: 8px;
   padding-right: 5px;

@@ -60,7 +60,7 @@ import ModalContribute from "../../Contribute/Contribute";
 
             {storyData !== undefined &&
               storyData.map((e) => {
-                if (e !== undefined && e.category == "Horror") {
+                if (e !== undefined && e.category == "smartcontract") {
                   return (
                     <div className="card carding">
                       <a href="#">
@@ -76,14 +76,14 @@ import ModalContribute from "../../Contribute/Contribute";
                           {
                             (e.element.nftholder_access && e.element.general_access == 2) ?
                             <Link
-                                to={`/horror-detail/${e.id}`}>
+                                to={`/smartcontract-detail/${e.id}`}>
                              <Button style={{backgroundColor: '#6EBF8B', color: '#151D3B'}}
                                disabled={false} variant="outline-info btn-outline buy-story-btn">Read Full Story</Button>
                               </Link>
 
                               :
                               <Link
-                                to={`/horror-detail/${e.id}`}>
+                                to={`/smartcontract-detail/${e.id}`}>
                                 <Button style={{backgroundColor: '#6EBF8B', color: '#151D3B'}}
                                  variant="outline-info btn-outline 
                                 buy-story-btn" disabled={false} >Read Full Story</Button>

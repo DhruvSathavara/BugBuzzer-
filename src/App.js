@@ -73,7 +73,7 @@ function App() {
         {/* Storypad List */}
         <Route path="/fantasy" element={<Fantasy />} />
         <Route path="/historical" element={<Historical />} />
-        <Route path="/horror" element={<Horror />} />
+        <Route path="/smartcontract" element={<Horror />} />
         <Route path="/mystery" element={<Mystery />} />
         <Route path="/newadult" element={<NewAdult />} />
         <Route path="/paranomal" element={<Paranormal />} />
@@ -90,7 +90,7 @@ function App() {
 
         <Route path="/fantasy-detail/:id" element={<HorrorDetail />} />
         <Route path="/historical-detail/:id" element={<HistoricalDetail />} />
-        <Route path="/horror-detail/:id" element={<HorrorDetail />} />
+        <Route path="/smartcontract-detail/:id" element={<HorrorDetail />} />
         <Route path="/mystery-detail/:id" element={<MysteryDetail />} />
         <Route path="/newadult-detail/:id" element={<NewAdultDetail />} />
         <Route path="/paranomal-detail/:id" element={<ParanormalDetail />} />

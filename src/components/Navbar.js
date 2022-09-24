@@ -33,36 +33,11 @@ import Popover from '@mui/material/Popover';
 import { api, utils } from "@epnsproject/frontend-sdk-staging";
 import UAuth from '@uauth/js'
 import { WorldIDWidget, WidgetProps } from "@worldcoin/id";
-import NotificationsPopover from './NotificationsPopover.js';
-// import ProfileCreation from './Lens/CreateProfileModal.js';
-
-const pages = [
-    {
-        name: 'Story',
-        path: 'upload-form'
-    },
-    {
-        name: 'NFT Upload',
-        path: 'nft-upload'
-    },
-    {
-        name: 'NFT Readership',
-        path: 'readership-nft'
-    },
-    {
-        name: 'Q & A',
-        path: 'question'
-    },
-    {
-        name: 'Ask',
-        path: 'askQue'
-    }
-]
+// import NotificationsPopover from './NotificationsPopover';
+import ProfileCreation from './Lens/CreateProfileModal';
 
 
-
-
-export default function Navbar() {
+export default function NavbarB() {
 
     const bookContext = React.useContext(BookContext);
     const { login, disconnect } = bookContext;
@@ -104,7 +79,6 @@ export default function Navbar() {
         setAnchorLogin(null);
     };
 
-    console.log(user, "user");
 
 
 
@@ -133,27 +107,6 @@ export default function Navbar() {
         scope: "openid wallet"
     })
 
-    async function inlog() {
-
-        try {
-            const authorization = await unClient.loginWithPopup();
-            console.log(authorization);
-            await localStorage.setItem("domain", authorization.idToken.sub)
-            console.log(localStorage.getItem("domain"));
-            const walletAddress = authorization.idToken.wallet_address;
-            localStorage.setItem("currentUserAddress", walletAddress)
-            refresh();
-        } catch (error) {
-
-            console.log(error);
-
-        }
-
-    }
-    async function out() {
-        await unClient.logout();
-        console.log('Logged out with Unstoppable');
-    }
 
     const refresh = () => {
         // re-renders the component
@@ -165,32 +118,9 @@ export default function Navbar() {
 
 
     // ----Fetch notification from EPNS ------ 
-    const [notificationItems, setNotificationItems] = React.useState([]);
 
 
-    async function fetchNotifications() {
-        if (localStorage.getItem("currentUserAddress")) {
-            // define the variables required to make a request
-            const walletAddress = localStorage.getItem("currentUserAddress");
-            const pageNumber = 1;
-            const itemsPerPage = 20;
 
-            // fetch the notifications
-
-            const { count, results } = await api.fetchNotifications(walletAddress, itemsPerPage, pageNumber)
-            // console.log('fetchedNotifications-----', { results });
-
-
-            // parse all the fetched notifications
-            const parsedResponse = utils.parseApiResponse(results);
-            console.log('parsedResponse----', parsedResponse);
-            setNotificationItems(parsedResponse);
-        }
-    }
-
-    React.useEffect(() => {
-        fetchNotifications();
-    }, []);
 
     const shortAddress = (addr) =>
         addr.length > 10 && addr.startsWith('0x')
@@ -198,157 +128,28 @@ export default function Navbar() {
             : addr
 
     return (
-        <div className='container p-0 '>
+        <div>
             <Box sx={{ flexGrow: 1 }} >
-                <AppBar sx={{ padding: { xs: '0', md: '0 85px', lg: '0 4%', background: 'white' } }} color='secondary' open={open}>
-                    <Toolbar>
 
-                        <IconButton
-                            size="large"
-                            edge="start"
-                            color="inherit"
-                            aria-label="open drawer"
-                            sx={{ display: { xs: 'block', sm: 'none' }, mr: 2 }}
-                            onClick={handleDrawerOpen}
-                        >
-                            <MenuIcon color='secondary' />
+                <Toolbar>
 
-                        </IconButton>
+                    <Drawer
+                        sx={{
+                            width: open && drawerWidth,
+                            flexShrink: 0,
+                            '& .MuiDrawer-paper': {
+                                width: drawerWidth,
+                                boxSizing: 'border-box',
+                            },
+                        }}
+                        variant="persistent"
+                        anchor="left"
+                        open={open}
+                    >
 
+                        <Divider />
 
-                        <Drawer
-                            sx={{
-                                width: open && drawerWidth,
-                                flexShrink: 0,
-                                '& .MuiDrawer-paper': {
-                                    width: drawerWidth,
-                                    boxSizing: 'border-box',
-                                },
-                            }}
-                            variant="persistent"
-                            anchor="left"
-                            open={open}
-                        >
-                            <DrawerHeader>
-                                <img alt='' style={{ cursor: 'pointer' }} onClick={navigateToHome} src='/BugBuzzer-Logo.png' />
-                                <IconButton onClick={handleDrawerClose}>
-                                    {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                                </IconButton>
-                            </DrawerHeader>
-                            <Divider />
-                            <List>
-                                {pages.map((text, index) => (
-                                    <ListItem key={text.name} disablePadding>
-                                        <ListItemButton onClick={() => handleClickNavigate(text.path)}>
-                                            <ListItemIcon>
-                                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                                            </ListItemIcon>
-                                            <ListItemText primary={text.name} />
-                                        </ListItemButton>
-                                    </ListItem>
-                                ))}
-                            </List>
-                            <Divider />
-                            {
-                                !user && <Box sx={{ flexGrow: 0 }}>
-                                    <Button onClick={handleOpenLoginMenu} className='m-2' style={{ background: '#488E72', color: 'white', textTransform: 'capitalize' }} >
-                                        Login
-                                    </Button>
-                                    <Menu
-                                        sx={{ mt: '45px' }}
-                                        id="menu-appbar"
-                                        anchorEl={anchorLogin}
-                                        anchorOrigin={{
-                                            vertical: 'top',
-                                            horizontal: 'right',
-                                        }}
-                                        keepMounted
-                                        transformOrigin={{
-                                            vertical: 'top',
-                                            horizontal: 'right',
-                                        }}
-                                        open={Boolean(anchorLogin)}
-                                        onClose={handleCloseLoginMenu}
-                                    >
-                                        <MenuItem onClick={() => login()} className='m-2'  > Web3Auth </MenuItem>
-                                        <MenuItem className='m-2'  >{localStorage.getItem("domain") !== null ? (
-                                            <small className="log-title">{localStorage.getItem("domain")}</small>
-                                        ) : "Unstoppable"} </MenuItem>
-                                        <MenuItem className='m-2'  >
-                                            <WorldIDWidget
-                                                actionId="wid_staging_76474f51ceeaf9c0730fae2c659f637b" // obtain this  
-                                                signal="user-id-1"
-                                                enableTelemetry='false'
-                                                appName="candyApp"
-                                                signalDescription="Receive initial airdrop April 2022"
-                                                theme="light"
-                                                debug='true' // DO NOT SET TO `true` IN PRODUCTION
-                                                onSuccess={(result) => console.log(result)}
-                                                onError={({ code, detail }) => console.log({ code, detail })}
-                                                onInitSuccess={() => console.log("Init successful")}
-                                                onInitError={(error) => console.log("Error while initialization World ID", error)} />
-                                        </MenuItem>
-
-                                    </Menu>
-                                </Box>
-                            }
-
-                        </Drawer>
-
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="div"
-                            sx={{ display: { xs: 'none', sm: 'block', md: 'block', lg: 'block', xl: 'block' }, cursor: 'pointer' }}
-                        >
-                            <img alt='' onClick={navigateToHome} src='/BugBuzzer-Logo.png' />
-                        </Typography>
-
-                        <Box sx={{ flexGrow: 1 }} />
-                        <Box sx={{ display: { xs: 'none', md: 'flex' }, marginLeft: 'auto' }}>
-                            {pages.map((page) => (
-                                <Link className='text-secondary mx-2' key={page.name} to={`/${page.path}`} underline="none" sx={{ m: 2, color: 'black', display: 'block', }}>{page.name}</Link>
-                            ))}
-                        </Box>
-                        <NotificationsPopover />
-
-                        {
-                            user && <Box sx={{ flexGrow: 0 }}>
-                                <Tooltip title="Open settings">
-                                    <div onClick={handleOpenUserMenu} style={{ cursor: 'pointer' }} className="d-flex">
-                                        <Avatar alt="" src="https://www.pinpng.com/pngs/m/615-6154495_avatar-png-icon-business-woman-icon-vector-transparent.png" />
-
-                                        <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
-                                            <p className="m-0 text-secondary" style={{ marginLeft: '5px', border: '1px solid #eee', padding: '7px 15px', borderRadius: '20px', fontWeight: 'bolder', width: 'fit-content' }}>
-                                                {user?.attributes?.ethAddress && shortAddress(user?.attributes?.ethAddress)}
-                                            </p>
-                                        </Box>
-                                    </div>
-                                </Tooltip>
-                                <Menu
-                                    sx={{ mt: '45px' }}
-                                    id="menu-appbar"
-                                    anchorEl={anchorElUser}
-                                    anchorOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'right',
-                                    }}
-                                    keepMounted
-                                    transformOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'right',
-                                    }}
-                                    open={Boolean(anchorElUser)}
-                                    onClose={handleCloseUserMenu}
-                                >
-                                    <MenuItem className='m-2'  > Profile </MenuItem>
-                                    <MenuItem className='m-2'  >
-                                        {/* <ProfileCreation /> */}
-                                        </MenuItem>
-                                    <MenuItem className='m-2' onClick={disconnect} > Disconnect </MenuItem>
-                                </Menu>
-                            </Box>
-                        }
+                        <Divider />
                         {
                             !user && <Box sx={{ flexGrow: 0 }}>
                                 <Button onClick={handleOpenLoginMenu} className='m-2' style={{ background: '#488E72', color: 'white', textTransform: 'capitalize' }} >
@@ -393,10 +194,96 @@ export default function Navbar() {
                             </Box>
                         }
 
+                    </Drawer>
 
 
-                    </Toolbar>
-                </AppBar>
+
+                    <Box sx={{ flexGrow: 1 }} />
+
+                    {/* <NotificationsPopover /> */}
+
+                    {
+                        user && <Box sx={{ flexGrow: 0 }}>
+                            <Tooltip title="Open settings">
+                                <div onClick={handleOpenUserMenu} style={{ cursor: 'pointer' }} className="d-flex">
+                                    {/* <Avatar alt="" src="https://www.pinpng.com/pngs/m/615-6154495_avatar-png-icon-business-woman-icon-vector-transparent.png" /> */}
+
+                                    <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
+                                        <p className="m-0 text-secondary" style={{ marginLeft: '5px', border: '1px solid #eee', padding: '7px 15px', borderRadius: '20px', fontWeight: 'bolder', width: 'fit-content' }}>
+                                            {user?.attributes?.ethAddress && shortAddress(user?.attributes?.ethAddress)}
+                                        </p>
+                                    </Box>
+                                </div>
+                            </Tooltip>
+                            <Menu
+                                sx={{ mt: '45px' }}
+                                id="menu-appbar"
+                                anchorEl={anchorElUser}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={Boolean(anchorElUser)}
+                                onClose={handleCloseUserMenu}
+                            >
+                                <MenuItem className='m-2'  > Profile </MenuItem>
+                                <MenuItem className='m-2'  ><ProfileCreation /></MenuItem>
+                                <MenuItem className='m-2' onClick={disconnect} > Disconnect </MenuItem>
+                            </Menu>
+                        </Box>
+                    }
+                    {
+                        !user && <Box sx={{ flexGrow: 0 }}>
+                            <Button onClick={handleOpenLoginMenu} className='m-2' style={{ background: '#488E72', color: 'white', textTransform: 'capitalize' }} >
+                                Login
+                            </Button>
+                            <Menu
+                                sx={{ mt: '45px' }}
+                                id="menu-appbar"
+                                anchorEl={anchorLogin}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={Boolean(anchorLogin)}
+                                onClose={handleCloseLoginMenu}
+                            >
+                                <MenuItem onClick={() => login()} className='m-2'  > Web3Auth </MenuItem>
+                                <MenuItem className='m-2'  >{localStorage.getItem("domain") !== null ? (
+                                    <small className="log-title">{localStorage.getItem("domain")}</small>
+                                ) : "Unstoppable"} </MenuItem>
+                                <MenuItem className='m-2'  >
+                                    <WorldIDWidget
+                                        actionId="wid_staging_76474f51ceeaf9c0730fae2c659f637b" // obtain this  
+                                        signal="user-id-1"
+                                        enableTelemetry='false'
+                                        appName="candyApp"
+                                        signalDescription="Receive initial airdrop April 2022"
+                                        theme="light"
+                                        debug='true' // DO NOT SET TO `true` IN PRODUCTION
+                                        onSuccess={(result) => console.log(result)}
+                                        onError={({ code, detail }) => console.log({ code, detail })}
+                                        onInitSuccess={() => console.log("Init successful")}
+                                        onInitError={(error) => console.log("Error while initialization World ID", error)} />
+                                </MenuItem>
+
+                            </Menu>
+                        </Box>
+                    }
+
+
+
+                </Toolbar>
             </Box>
         </div >
     );
