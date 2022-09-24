@@ -103,8 +103,7 @@ export default function Navbar() {
     const handleCloseLoginMenu = () => {
         setAnchorLogin(null);
     };
-
-    console.log(user, "user");
+ 
 
 
 
