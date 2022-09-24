@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { MoralisProvider } from 'react-moralis';
 import { BrowserRouter } from 'react-router-dom';
 import { BookContextProvider } from './Context/BookContext';
+import { LensAuthContextProvider } from './Context/LensContext';
 import 'react-toastify/dist/ReactToastify.css';
 import { ChatBoxContextProvider } from './Context/ChatBoxContext';
 
@@ -20,15 +21,17 @@ ReactDOM.render(
 
   <MoralisProvider appId={process.env.REACT_APP_MORALIS_KEY} serverUrl={process.env.REACT_APP_MORALIS_SERVER}>
     <BookContextProvider>
-      <BrowserRouter>
-      <ChatBoxContextProvider>
-        <React.StrictMode>
+      <LensAuthContextProvider>
+        <BrowserRouter>
+          <ChatBoxContextProvider>
+            <React.StrictMode>
 
-          <App />
-        </React.StrictMode>
-        </ChatBoxContextProvider>
+              <App />
+            </React.StrictMode>
+          </ChatBoxContextProvider>
 
-      </BrowserRouter>
+        </BrowserRouter>
+      </LensAuthContextProvider>
     </BookContextProvider>
   </MoralisProvider>,
   document.getElementById('root')

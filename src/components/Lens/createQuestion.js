@@ -1,24 +1,45 @@
-import { Avatar, Button } from '@mui/material'
+
+import { Avatar, Button, CircularProgress } from '@mui/material'
 import Divider from '@mui/material/Divider';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { getPublicationByLatest } from '../../LensProtocol/post/explore/explore-publications';
 import QuestionModal from './QuestionModal';
+import { addDoc, collection, doc, getDocs, query, runTransaction, setDoc, where, writeBatch, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { db } from '../../firebase/firebase';
 
-const   category= ["reactjs", "javascript", "typescript"]
+const category = ["reactjs", "javascript", "typescript"]
 
 
 function CreateQuestion() {
+    const navigate = useNavigate();
     const [post, setPost] = useState([]);
+    const [count, setCount] = useState(0);
 
     useEffect(() => {
-        getPosts()
+        getPosts();
+        getLikeUp();
     }, [])
 
     async function getPosts() {
         const res = await getPublicationByLatest();
         setPost(res.data.explorePublications.items)
-        console.log(res, "res");
+    }
+
+    const handleNavigate = (path) => {
+        navigate(`/questionDetail/${path}`)
+    }
+
+    async function getLikeUp(id) {
+        const q = query(collection(db, "Votes"), where("publicationId", "==", id));
+        const querySnapshot = await getDocs(q);
+        if (querySnapshot.empty) {
+            setCount(0);
+        }
+        querySnapshot.forEach((data) => {
+            setCount(data.data().vote);
+        })
     }
 
 
@@ -34,10 +55,21 @@ function CreateQuestion() {
                 </div>
                 <div className='col-12 mt-5'>
                     {
-                     post &&  post.map((e) => {
+                        post == undefined && <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <CircularProgress />
+                        </Box>
+                    }
+                    {
+                        post?.length == 0 && <Box sx={{ display: 'flex', justifyContent: 'start' }}>
+                            <h4>No Questions Available!</h4>
+                        </Box>
+                    }
+                    {
+                        post && post.map((e) => {
+                            getLikeUp(e.id)
                             return (
-                                <div className='p-3 text-left '>
-                                    <h3 className=''>{e?.metadata?.content}</h3>
+                                <div className='p-3 text-left ' key={e.id}>
+                                    <h3 onClick={() => handleNavigate(e.id)} className='text-primary' style={{ cursor: 'pointer' }}>{e?.metadata?.content}</h3>
                                     <p>{e?.metadata?.description}</p>
                                     <div className='d-flex justify-content-start'>
 
@@ -51,8 +83,8 @@ function CreateQuestion() {
                                     </div>
                                     <div className='d-flex justify-content-between'>
                                         <div className='d-flex '>
-                                            <p className='m-2'>Votes</p>
-                                            <p className='m-2'>Answers</p>
+                                            <p className='m-2'>Votes {count}</p>
+                                            <p className='m-2'>Answers ({e?.stats?.totalAmountOfComments})</p>
                                         </div>
                                         <div style={{ cursor: 'pointer' }} className="d-flex">
                                             <Avatar alt="" src={e.profile.picture != null ? e?.profile?.picture?.original?.url : "https://www.pinpng.com/pngs/m/615-6154495_avatar-png-icon-business-woman-icon-vector-transparent.png"} />

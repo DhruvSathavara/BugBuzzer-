@@ -22,7 +22,7 @@ export const BookContextProvider = (props) => {
     // const [loading, setLoading] = useState(false);
 
 
-    const { Moralis, user, account, authenticate, isAuthenticated, isInitialized } = useMoralis();
+    const { Moralis, user, account, authenticate, isAuthenticated, isInitialized, logout } = useMoralis();
     const { data, fetch } = useMoralisQuery("StoryPadBuildit");
     const storyD = data;
     // console.log(data, ' ====');
@@ -94,10 +94,16 @@ export const BookContextProvider = (props) => {
     const notify = () => toast("You are logged in!");
 
 
-    const login = async () => {
-        console.log('called login');
-        // setLoading(true)
+    const disconnect = async () => {
+        if (isAuthenticated) {
+            await logout();
+            window.localStorage.removeItem("accessToken");
+            window.localStorage.removeItem("refreshToken");
+            window.localStorage.removeItem("profileId");
+        }
+    }
 
+    const login = async () => {
         if (!isAuthenticated) {
             await authenticate({
                 provider: "web3Auth",
@@ -107,40 +113,12 @@ export const BookContextProvider = (props) => {
             })
                 .then(function (user) {
                     let address = user.get("ethAddress")
-                    console.log(address, 'address in context');
-                    localStorage.setItem("currentUserAddress", address)
+                    // console.log(address, 'address in context');
+                    // localStorage.setItem("currentUserAddress", address)
                 })
 
                 .catch(function (error) {
                 });
-
-            // const accounts = await ethereum.request({ method: 'eth_accounts' });
-
-            // if (accounts.length !== 0) {
-            //     const account = accounts[0];
-            //     console.log("Found an authorized account: ", account);
-
-            //     // Switch network if it's not the correct chain
-            //     try {
-            //         await ethereum.request({
-            //             method: "wallet_switchEthereumChain",
-            //             params: [{ chainId: POLYGON.chainId }],
-            //         });
-            //         setAddress(accounts[0]);
-            //     } catch (err) {
-            //         console.log(err);
-            //     }
-
-            // } else {
-            //     console.log("No authorized account found");
-            // }
-            // } ;
-
-
-
-
-            // setLoading(false);
-
         }
     }
 
@@ -180,15 +158,6 @@ export const BookContextProvider = (props) => {
         return imageURI;
     }
 
-    // function disconnectWallet() {
-    //     // web3Modal.clearCachedProvider();
-    //     window.localStorage.removeItem("accessToken");
-    //     window.localStorage.removeItem("refreshToken");
-    //     window.localStorage.removeItem("profileId");
-    //     setUpdate(!update)
-    //     window.location.reload();
-    
-    //   }
 
 
     return (
@@ -203,10 +172,7 @@ export const BookContextProvider = (props) => {
                 storeFile,
                 Image,
                 fetch,
-                // disconnectWallet
-
-
-
+                disconnect, 
             }}
         >
             {props.children}

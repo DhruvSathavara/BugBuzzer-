@@ -33,7 +33,6 @@ export const createPost = async (postData) => {
             metadata_id: uuidv4(),
             description: postData.body,
             content:  postData.title,  
-            tags: postData.tags,
             external_url: null,
             image:  null,
             imageMimeType: null,
@@ -52,7 +51,7 @@ export const createPost = async (postData) => {
                     type: 'image/jpeg'
                 }
             ],
-            appId: 'bugbuzzer',
+            appId: 'Bbuzzer',
             animation_url: null,
         });
       

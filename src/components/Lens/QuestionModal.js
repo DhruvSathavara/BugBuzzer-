@@ -3,7 +3,7 @@ import createProfile from "../../LensProtocol/profile/Create_Profile";
 import React, { useState } from "react";
 import { Button, Chip, CircularProgress, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, MenuItem, Stack, TextField } from "@mui/material";
 import { styled } from "@mui/system";
-import { profile } from "../../LensProtocol/profile/get-profile";
+// import { profile } from "../../LensProtocol/profile/get-profile";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { create } from 'ipfs-http-client';
 import { Buffer } from 'buffer';
@@ -141,7 +141,7 @@ export default function QuestionModal() {
                 </DialogContent>
                 <DialogActions>
                     <Button variant="contained" onClick={handleClose}>Cancel</Button>
-                    <Button variant="contained" onClick={handleSubmit}>{isLoading ? <CircularProgress color="white" /> : "Post Your Question"}</Button>
+                    <Button variant="contained" onClick={handleSubmit}>{isLoading ?  "Loading..." : "Post Your Question"}</Button>
                 </DialogActions>
             </Dialog>
         </div>

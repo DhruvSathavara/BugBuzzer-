@@ -13,7 +13,7 @@ import { posts } from "../LensProtocol/post/get-post";
 import { getPublicationByLatest } from "../LensProtocol/post/explore/explore-publications";
 import { toast } from "react-toastify";
 
-export const LensAuthContext = createContext( );
+export const LensAuthContext = createContext();
 
 export const LensAuthContextProvider = (props) => {
 

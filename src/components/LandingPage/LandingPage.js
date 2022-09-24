@@ -10,7 +10,7 @@ function LandingPage() {
             
 
                 <img className="landing-page-img"style={{marginTop:"71px",width:"100vw"}} src="https://trackjs.com/assets/images/illustrations/protected_script.svg"></img>
-                <Link to="askQue">
+                <Link to="/question">
             <Button className="headers-btns" style={{
               color: "#151D3B",
               bottom:"20rem",

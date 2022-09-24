@@ -47,6 +47,8 @@ import Questiondetail from './components/Q and A/Questiondetail';
 import AskQuestion from './components/Q and A/AskQuestion';
 import QandAdetail from './components/Q and A/Q&Adetail';
 import Navbar from './components/Navbar';
+import CreateQuestion from './components/Lens/createQuestion';
+import QuestionDetails from './components/Lens/QuestionDetails';
 
 
 function App() {
@@ -59,6 +61,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/upload-form" element={<UploadForm />} />
+        <Route path="/question" element={<CreateQuestion />} />
+        <Route path="/questionDetail/:id" element={<QuestionDetails />} />
 
         <Route path="/profile" element={<Profile />} />
         <Route path="/chatbox" element={<ChatBox />} />
@@ -101,7 +105,7 @@ function App() {
         <Route path="/readership-nft-detail/:address" element={<NftReadershipDetail />} />
 
         {/* Question detail */}
-        <Route path="/askQue" element={<AskQuestion/>} />
+        <Route path="/askQue" element={<AskQuestion />} />
         <Route path="/question-detail/:id" element={<Questiondetail />} />
 
 
